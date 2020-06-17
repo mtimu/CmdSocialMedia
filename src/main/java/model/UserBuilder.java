@@ -1,6 +1,4 @@
-package model;
-
-import java.util.ArrayList;
+package main.java.model;
 
 public class UserBuilder {
     private int id;

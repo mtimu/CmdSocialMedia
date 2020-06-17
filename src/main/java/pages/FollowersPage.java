@@ -1,11 +1,11 @@
-package pages;
+package main.java.pages;
 
-import account.Credentials;
-import database.Repository;
-import database.RepositoryFactory;
-import model.User;
-import ui.Menu;
-import ui.Printer;
+import main.java.database.Repository;
+import main.java.account.Credentials;
+import main.java.database.RepositoryFactory;
+import main.java.model.User;
+import main.java.ui.Menu;
+import main.java.ui.Printer;
 
 public class FollowersPage extends Page {
     public static String title = "Follower Menu";

@@ -1,5 +1,7 @@
-import lifecycle.Application;
-import pages.LoginPage;
+package main.java;
+
+import main.java.pages.LoginPage;
+import main.java.lifecycle.Application;
 
 
 public class Main {

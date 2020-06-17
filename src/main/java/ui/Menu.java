@@ -1,10 +1,13 @@
-package ui;
+package main.java.ui;
 
-import pages.FollowersPage;
-import pages.FollowingPage;
-import pages.MainPage;
-import pages.PostsPage;
+import main.java.pages.FollowersPage;
+import main.java.pages.FollowingPage;
+import main.java.pages.MainPage;
+import main.java.pages.PostsPage;
 
+/**
+ * simple class to build program menus
+ */
 // TODO: 6/13/2020 create a pool pattern for menus too
 public class Menu {
     public static final int INVALID_OPTION_CHOOSE_AGAIN = 1;
@@ -15,7 +18,7 @@ public class Menu {
         String title = "Invalid Choice Menu";
         String[] menu = {
                 "Choose Again",
-                "Main Menu"
+                "java.Main Menu"
         };
 
         String[] indices = createIndicesFrom(menu);
@@ -96,6 +99,12 @@ public class Menu {
         System.out.println(createMenuFrom(title , menu , indices));
     }
 
+    /**
+     * @param rawTitle title of menu
+     * @param raw menu items
+     * @param indices menu indices
+     * @return formatted menu from title, menu items and indices
+     */
     private static String createMenuFrom(String rawTitle , String[] raw , String[] indices) {
 
         String menu = "\t" + StrHelper.join(raw , "\t|\t");
@@ -106,6 +115,10 @@ public class Menu {
     }
 
 
+    /**
+     * @param raw menu items
+     * @return indices for menu items
+     */
     private static String[] createIndicesFrom(String[] raw) {
         String[] indices = new String[raw.length];
         for (int i = 0; i < raw.length; i++) {

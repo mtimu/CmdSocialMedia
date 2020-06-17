@@ -1,7 +1,10 @@
-package ui;
+package main.java.ui;
 
 import java.io.IOException;
 
+/**
+ * a simple Message Printer to prettify message with text color and background color
+ */
 public class Printer {
     private static final String COLOR_RESET = "\u001B[0m";
     public static final String COLOR_BLACK = "\u001B[30m";

@@ -1,8 +1,8 @@
-package pages;
+package main.java.pages;
 
-import lifecycle.PageManager;
-import ui.Input;
-import ui.Printer;
+import main.java.lifecycle.PageManager;
+import main.java.ui.Input;
+import main.java.ui.Printer;
 
 public abstract class Page {
     private Input input ;

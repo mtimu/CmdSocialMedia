@@ -1,9 +1,13 @@
-package ui;
+package main.java.ui;
 
 import java.util.Scanner;
 
+/**
+ * A helper class to get inputs from {@link Scanner}
+ * this class use {@link Printer} to print formatted messages for inputs
+ */
 public class Input {
-    private final static String TITLE = "Your Choice:";
+    private final static String TITLE = "Your Choice";
     private static Input input;
     private Scanner scanner;
 
@@ -24,7 +28,7 @@ public class Input {
     }
 
     public int intIn(String title) {
-        Printer.print(title,Printer.COLOR_GREEN);
+        Printer.print(title.concat(": "),Printer.COLOR_GREEN);
         return Integer.parseInt(scanner.nextLine().trim());
     }
 

@@ -1,7 +1,7 @@
-package account;
+package main.java.account;
 
-import model.User;
-import model.UserBuilder;
+import main.java.model.User;
+import main.java.model.UserBuilder;
 
 public class Credentials {
     private static Credentials credentials;

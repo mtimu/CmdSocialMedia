@@ -1,12 +1,11 @@
-package pages;
+package main.java.pages;
 
-import account.Credentials;
-import database.FileRepository;
-import database.Repository;
-import database.RepositoryFactory;
-import model.Post;
-import ui.Menu;
-import ui.Printer;
+import main.java.database.Repository;
+import main.java.account.Credentials;
+import main.java.database.RepositoryFactory;
+import main.java.model.Post;
+import main.java.ui.Menu;
+import main.java.ui.Printer;
 
 public class PostsPage extends Page {
     public static String title = "Posts Menu";

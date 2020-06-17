@@ -1,7 +1,7 @@
-package pages;
+package main.java.pages;
 
-import account.Credentials;
-import ui.Printer;
+import main.java.account.Credentials;
+import main.java.ui.Printer;
 
 public class ProfilePage extends Page {
     private Credentials credentials;

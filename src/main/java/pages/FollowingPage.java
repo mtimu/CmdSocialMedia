@@ -1,12 +1,12 @@
-package pages;
+package main.java.pages;
 
-import account.Credentials;
-import database.Repository;
-import database.RepositoryFactory;
-import model.Post;
-import model.User;
-import ui.Menu;
-import ui.Printer;
+import main.java.database.Repository;
+import main.java.account.Credentials;
+import main.java.database.RepositoryFactory;
+import main.java.model.Post;
+import main.java.model.User;
+import main.java.ui.Menu;
+import main.java.ui.Printer;
 
 public class FollowingPage extends Page {
     public static String title = "Following Menu";

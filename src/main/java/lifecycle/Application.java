@@ -1,7 +1,10 @@
-package lifecycle;
+package main.java.lifecycle;
 
-import pages.Page;
+import main.java.pages.Page;
 
+/**
+ * java.Main class of whole project to manage java.pages
+ */
 public final class Application {
     private PageManager manager;
 
@@ -16,6 +19,10 @@ public final class Application {
         new Application(startPage);
     }
 
+    /**
+     * simple method, loop through stack java.pages while it's not empty
+     * calling {@link Page} methods for each class
+     */
     private void loopBackStack() {
 
         while (!manager.isStackEmpty()) {

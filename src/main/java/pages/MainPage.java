@@ -1,11 +1,11 @@
-package pages;
+package main.java.pages;
 
-import account.Credentials;
-import ui.Menu;
-import ui.Printer;
+import main.java.account.Credentials;
+import main.java.ui.Menu;
+import main.java.ui.Printer;
 
 public class MainPage extends Page {
-    public final static String title = "Main Menu";
+    public final static String title = "java.Main Menu";
     public final static String[] menu = {
             "Profile" ,
             "Posts" ,

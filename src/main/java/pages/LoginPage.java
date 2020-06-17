@@ -1,8 +1,8 @@
-package pages;
+package main.java.pages;
 
-import account.Credentials;
-import model.User;
-import ui.Printer;
+import main.java.ui.Printer;
+import main.java.account.Credentials;
+import main.java.model.User;
 
 public class LoginPage extends Page {
 
