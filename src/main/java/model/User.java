@@ -1,6 +1,9 @@
 package main.java.model;
 
 
+import lombok.Getter;
+
+@Getter
 public class User {
     private int id;
     private String name;
@@ -29,27 +32,6 @@ public class User {
         this.followersSize = followersSize;
         this.followingsSize = followingsSize;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
 
     public String inlinePrintForm() {
         return String.format("UserId: %d\nName:%s Username:%s Bio: %s\n" , getId() , getName() , getUsername() , getBio());
