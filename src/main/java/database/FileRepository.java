@@ -68,10 +68,6 @@ public class FileRepository extends Repository {
         return true;
     }
 
-    @Override
-    public Post getUserSinglePostById(User following , int postId) {
-        return new Post(100 , "Hello" , "This is caption");
-    }
 
     @Override
     public boolean likePostById(int postId) {

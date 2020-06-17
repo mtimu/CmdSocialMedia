@@ -8,6 +8,9 @@ import main.java.model.User;
 import main.java.ui.Menu;
 import main.java.ui.Printer;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 public class FollowingPage extends Page {
     public static String title = "Following Menu";
     public static String[] menu = {
@@ -98,21 +101,20 @@ public class FollowingPage extends Page {
     }
 
     private void followingPostsMenu(User following) {
-        repository.getPostsBy(following).forEach(System.out::println);
+        ArrayList<Post> posts = repository.getPostsBy(following);
+        posts.forEach(System.out::println);
         Printer.printLine();
         Menu.printUserPostsMenu();
         int choice = getInput().intIn();
 
         if (choice == EXIT) return;
 
-        followingSinglePostMenu(following, choice);
+        followingSinglePostMenu(getPostById(posts,choice));
 
         followingPostsMenu(following);
     }
 
-    private void followingSinglePostMenu(User following, int postId) {
-        Post post = repository.getUserSinglePostById(following , postId);
-
+    private void followingSinglePostMenu(Post post) {
         Printer.print(post.getExpandedDetail() , Printer.COLOR_YELLOW);
         Printer.printLine();
         Menu.printPostDetailMenu();
@@ -121,11 +123,15 @@ public class FollowingPage extends Page {
 
         if (!choice.toLowerCase().equals("l")) return;
 
-        boolean success = repository.likePostById(postId);
+        boolean success = repository.likePostById(post.getId());
         if (success) Printer.println("Post Liked Successfully" , Printer.COLOR_GREEN);
         else Printer.printERR("Failed to Like Post!");
     }
 
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    private Post getPostById(ArrayList<Post> posts , int postId) {
+        return posts.stream().filter(post -> post.getId() == postId).findFirst().get();
+    }
 
     @Override
     public void onDestroy() {

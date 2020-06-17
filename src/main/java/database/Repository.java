@@ -23,7 +23,5 @@ public abstract class Repository {
 
     public abstract boolean followUser(User currentUser , int choice);
 
-    public abstract Post getUserSinglePostById(User following , int postId);
-
     public abstract boolean likePostById(int postId);
 }
