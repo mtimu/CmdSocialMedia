@@ -10,7 +10,6 @@ public class PostRaf extends RAF<Post> {
     public static final String ADDRESS = "";
 
     public static final int USER_ID_LEN = 4;
-    public static final int RECORD_LEN_LEN = 4;
     public static final int POST_ID_LEN = 4;
     public static final int POST_LIKES_LEN = 4;
 
@@ -27,10 +26,10 @@ public class PostRaf extends RAF<Post> {
 
         int recordLength = getRecordLen(obj);
         getRaf().seek(getEndOfRaf());
-        getRaf().write(obj.getUserId());
-        getRaf().write(recordLength);
-        getRaf().write(obj.getId());
-        getRaf().write(obj.getLikes());
+        getRaf().writeInt(obj.getUserId());
+        getRaf().writeInt(recordLength);
+        getRaf().writeInt(obj.getId()); // TODO: 6/19/2020 newId needed
+        getRaf().writeInt(obj.getLikes());
         getRaf().writeUTF(obj.getTitle());
         getRaf().writeUTF(obj.getCaption());
     }
@@ -98,10 +97,26 @@ public class PostRaf extends RAF<Post> {
 
             int likes = getRaf().readInt();
             getRaf().seek(getRaf().getFilePointer() - POST_LIKES_LEN);
-            getRaf().write(likes+1);
+            getRaf().write(likes + 1);
             break;
         }
 
+    }
+
+    public int getUserPostsSize(int userId) throws IOException {
+        int size = 0;
+        getRaf().seek(0);
+
+        while (getRaf().getFilePointer() < getEndOfRaf()) {
+            int eachUserId = getRaf().readInt();
+
+            if (eachUserId == userId) size++;
+
+            int recordLength = getRaf().readInt();
+            getRaf().skipBytes(recordLength);
+        }
+
+        return size;
     }
 
 

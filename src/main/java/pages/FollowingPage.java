@@ -57,7 +57,10 @@ public class FollowingPage extends Page {
     }
 
     private void addFollowingMenu() {
-        repository.getAllUsers().forEach(user -> System.out.println(user.inlinePrintForm()));
+        repository.getAllUsers().stream()
+                .filter(user -> user.getId() != credentials.getUserInSystem().getId())
+                .forEach(user -> System.out.println(user.inlinePrintForm()));
+
         Printer.printLine();
         Menu.printAddFollowingMenu();
         Printer.printERR("**: Enter Zero to Exit");

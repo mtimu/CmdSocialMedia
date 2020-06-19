@@ -13,9 +13,9 @@ import java.util.List;
 
 public class FileRepository extends Repository {
     static Repository INSTANCE;
-    private PostRaf postRaf;
-    private UserRaf userRaf;
-    private UserRelationRaf userRelationRaf;
+    private final PostRaf postRaf;
+    private final UserRaf userRaf;
+    private final UserRelationRaf userRelationRaf;
 
 
     FileRepository() {
@@ -78,38 +78,64 @@ public class FileRepository extends Repository {
     //region User methods
     @Override
     public ArrayList<User> getAllUsers() {
-        return userRaf.getAllUsers();
+        try {
+            return userRaf.getAllUsers(postRaf,userRelationRaf);
+        } catch (IOException e) {
+            // TODO: 6/19/2020 log error
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public ArrayList<User> getUserFollowings(User user) {
-        List<Integer> userFollowingsIds = userRelationRaf.getUserFollowingsIds(user.getId());
-        return userRaf.getUserFollowings(userFollowingsIds);
+        try {
+            List<Integer> userFollowingsIds = userRelationRaf.getUserFollowingsIds(user.getId());
+            return userRaf.getUserFromList(userFollowingsIds, postRaf, userRelationRaf);
+        } catch (IOException e) {
+            // TODO: 6/19/2020 log error
+            return new ArrayList<>();
+        }
     }
 
 
     @Override
     public ArrayList<User> getUserFollowers(User user) {
-        List<Integer> userFollowersIds = userRelationRaf.getUserFollowersIds(user.getId());
-        return userRaf.getUserFollowers(userFollowersIds);
+        try {
+            List<Integer> userFollowersIds = userRelationRaf.getUserFollowersIds(user.getId());
+            return userRaf.getUserFromList(userFollowersIds,postRaf, userRelationRaf);
+        } catch (IOException e) {
+            // TODO: 6/19/2020 log error
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public User getUserFollowing(int userId, int followingId) {
-        // return null if doesnt have a relation
-        if (!userRelationRaf.haveRelation(userId , followingId, UserRelationRaf.FOLLOWING))
-            return null;
+        try {
+            // return null if doesnt have a relation
+            if (!userRelationRaf.haveThisRelation(userId , followingId, UserRelationRaf.FOLLOWING))
+                return null;
 
-        return userRaf.getUserById(followingId);
+            return userRaf.getUserById(followingId, postRaf, userRelationRaf);
+        } catch (IOException e) {
+            // TODO: 6/19/2020 log error
+            return null;
+        }
     }
 
     @Override
     public User getUserFollower(int userId , int followerId) {
-        // return null if doesnt have a relation
-        if (!userRelationRaf.haveRelation(userId , followerId,UserRelationRaf.FOLLOWER))
-            return null;
 
-        return userRaf.getUserById(followerId);
+        try {
+            // return null if doesnt have a relation
+            if (!userRelationRaf.haveThisRelation(userId , followerId,UserRelationRaf.FOLLOWER))
+                return null;
+
+            return userRaf.getUserById(followerId, postRaf, userRelationRaf);
+        } catch (IOException e) {
+            // TODO: 6/19/2020 log error
+            return null;
+        }
     }
 
     @Override
