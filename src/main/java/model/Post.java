@@ -6,13 +6,15 @@ import lombok.Getter;
 public class Post {
     private int id;
     private int userId;
+    private int likes;
     private String title;
     private String caption;
 
 
-    public Post(int id , int userId , String title , String caption) {
+    public Post(int id , int userId , int likes , String title , String caption) {
         this.id = id;
         this.userId = userId;
+        this.likes = likes;
         this.title = title;
         this.caption = caption;
     }
