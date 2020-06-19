@@ -18,13 +18,16 @@ public abstract class Repository {
     //endregion
 
 
-    public abstract User getUserById(int currentUserId,int userId);
+    public abstract User getUserFollowing(int userId, int followingId);
+
+    public abstract User getUserFollower(int userId, int followerId);
+
 
     public abstract ArrayList<User> getAllUsers();
 
-    public abstract ArrayList<User> getFollowingsBy(User user);
+    public abstract ArrayList<User> getUserFollowings(User user);
 
-    public abstract ArrayList<User> getFollowerBy(User user);
+    public abstract ArrayList<User> getUserFollowers(User user);
 
     public abstract boolean followUser(User currentUser , int followerId);
 

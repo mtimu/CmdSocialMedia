@@ -28,7 +28,7 @@ public class FollowersPage extends Page {
 
     @Override
     public void onStart() {
-        repository.getFollowerBy(credentials.getUserInSystem()).forEach(user -> System.out.println(user.inlinePrintForm()));
+        repository.getUserFollowers(credentials.getUserInSystem()).forEach(user -> System.out.println(user.inlinePrintForm()));
         Printer.printLine();
         Menu.printFollowerMenu();
         followersMenu();
@@ -41,8 +41,8 @@ public class FollowersPage extends Page {
         else showUserProfile(choice);
     }
 
-    private void showUserProfile(int userId) {
-        User user = repository.getUserById(credentials.getUserInSystem().getId(), userId);
+    private void showUserProfile(int followerId) {
+        User user = repository.getUserFollower(credentials.getUserInSystem().getId(), followerId);
 
         if (user == null) Printer.printERR("User Is Not your Follower");
         else {

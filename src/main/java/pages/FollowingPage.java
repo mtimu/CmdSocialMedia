@@ -9,7 +9,6 @@ import main.java.ui.Menu;
 import main.java.ui.Printer;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class FollowingPage extends Page {
     public static String title = "Following Menu";
@@ -39,7 +38,7 @@ public class FollowingPage extends Page {
     }
 
     private void followingMenu() {
-        repository.getFollowingsBy(credentials.getUserInSystem()).forEach(user -> System.out.println(user.inlinePrintForm()));
+        repository.getUserFollowings(credentials.getUserInSystem()).forEach(user -> System.out.println(user.inlinePrintForm()));
         Printer.printLine();
         Menu.printFollowingMenu();
         int choice = getInput().intIn();
@@ -77,8 +76,8 @@ public class FollowingPage extends Page {
         addFollowing();
     }
 
-    private void followingProfileMenu(int userId) {
-        User user = repository.getUserById(credentials.getUserInSystem().getId() , userId);
+    private void followingProfileMenu(int followingId) {
+        User user = repository.getUserFollowing(credentials.getUserInSystem().getId() , followingId);
 
         if (user == null) Printer.printERR("User Is Not your Followings");
         else {
