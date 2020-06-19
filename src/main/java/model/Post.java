@@ -1,17 +1,18 @@
 package main.java.model;
 
 import lombok.Getter;
-import main.java.database.io.Entity;
 
 @Getter
 public class Post {
     private int id;
+    private int userId;
     private String title;
     private String caption;
 
 
-    public Post(int id , String title , String caption) {
+    public Post(int id , int userId , String title , String caption) {
         this.id = id;
+        this.userId = userId;
         this.title = title;
         this.caption = caption;
     }

@@ -4,11 +4,11 @@ package main.java.model;
 import lombok.Getter;
 
 @Getter
-public class User {
+public class User{
     private int id;
-    private String name;
     private String username;
     private String password;
+    private String name;
     private String bio;
     private int postsSize;
     private int followingsSize;
@@ -58,4 +58,5 @@ public class User {
                 followingsSize,
                 getBio());
     }
+
 }
