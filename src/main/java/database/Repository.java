@@ -7,7 +7,18 @@ import java.util.ArrayList;
 
 public abstract class Repository {
 
-    public abstract ArrayList<Post> getPostsBy(User user);
+    //region Post Methods
+    public abstract ArrayList<Post> getPostsBy(int userId);
+
+    public abstract Post getPostById(int id);
+
+    public abstract boolean addPost(Post post);
+
+    public abstract boolean likePostById(int postId);
+    //endregion
+
+
+    public abstract User getUserById(int currentUserId,int userId);
 
     public abstract ArrayList<User> getAllUsers();
 
@@ -15,13 +26,6 @@ public abstract class Repository {
 
     public abstract ArrayList<User> getFollowerBy(User user);
 
-    public abstract boolean addPostFor(User user , Post post);
+    public abstract boolean followUser(User currentUser , int followerId);
 
-    public abstract Post getPostById(int id);
-
-    public abstract User getUserById(int currentUserId,int userId);
-
-    public abstract boolean followUser(User currentUser , int choice);
-
-    public abstract boolean likePostById(int postId);
 }

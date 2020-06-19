@@ -30,7 +30,7 @@ public class PostsPage extends Page {
 
     @Override
     public void onStart() {
-        repository.getPostsBy(credentials.getUserInSystem()).forEach(System.out::println);
+        repository.getPostsBy(credentials.getUserInSystem().getId()).forEach(System.out::println);
         Printer.printLine();
         Menu.printPostsMenu();
         chooseFromMenu();
@@ -54,9 +54,10 @@ public class PostsPage extends Page {
         Printer.printLine();
         String title = getInput().lineIn("Post Title");
         String caption = getInput().lineIn("Post Caption");
-        Post newPost = new Post(-1 , title , caption);
+        int userId = credentials.getUserInSystem().getId();
+        Post newPost = new Post(-1 , userId , title , caption);
 
-        boolean success = repository.addPostFor(credentials.getUserInSystem() , newPost);
+        boolean success = repository.addPost(newPost);
 
         if (success) Printer.println("Post Added Successfully",Printer.COLOR_GREEN);
         else Printer.printERR("Failed To Add Post");
