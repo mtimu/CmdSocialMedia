@@ -55,7 +55,7 @@ public class PostsPage extends Page {
         String title = getInput().lineIn("Post Title");
         String caption = getInput().lineIn("Post Caption");
         int userId = credentials.getUserInSystem().getId();
-        Post newPost = new Post(-1 , userId , title , caption);
+        Post newPost = new Post(-1 , userId , 0 , title , caption);
 
         boolean success = repository.addPost(newPost);
 
