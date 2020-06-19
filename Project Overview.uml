@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>main.java.ui.Input</OriginalElement>
+  <nodes>
+    <node x="1369.0" y="671.0">lombok.Getter</node>
+    <node x="1135.0" y="1200.0">main.java.ui.Printer</node>
+    <node x="846.0" y="108.0">main.java.io.RAF</node>
+    <node x="289.0" y="1673.0">main.java.database.RepositoryFactory</node>
+    <node x="0.0" y="943.0">main.java.pages.FollowersPage</node>
+    <node x="874.5" y="0.0">java.lang.AutoCloseable</node>
+    <node x="203.0" y="965.0">main.java.pages.ProfilePage</node>
+    <node x="1226.0" y="823.0">main.java.model.User</node>
+    <node x="1630.0" y="1200.0">main.java.ui.StrHelper</node>
+    <node x="546.0" y="1673.0">main.java.Main</node>
+    <node x="229.0" y="1200.0">main.java.ui.Menu</node>
+    <node x="377.0" y="976.0">main.java.pages.LoginPage</node>
+    <node x="1490.0" y="867.0">main.java.model.Post</node>
+    <node x="532.0" y="877.0">main.java.pages.FollowingPage</node>
+    <node x="311.0" y="357.0">main.java.io.UserRaf</node>
+    <node x="769.0" y="346.0">main.java.io.UserRelationRaf</node>
+    <node x="1173.0" y="357.0">main.java.io.PostRaf</node>
+    <node x="0.0" y="1673.0">main.java.lifecycle.Application</node>
+    <node x="0.0" y="0.0">main.java.database.Repository</node>
+    <node x="437.75" y="671.0">main.java.pages.Page</node>
+    <node x="0.0" y="1308.0">main.java.model.UserRelation</node>
+    <node x="0.0" y="306.0">main.java.database.FileRepository</node>
+    <node x="1367.0" y="1200.0">main.java.account.Credentials</node>
+    <node x="822.0" y="1200.0">main.java.lifecycle.PageManager</node>
+    <node x="1001.0" y="943.0">main.java.pages.PostsPage</node>
+    <node x="1.5" y="1200.0">lombok.Data</node>
+    <node x="802.0" y="976.0">main.java.pages.MainPage</node>
+    <node x="577.0" y="1200.0">main.java.ui.Input</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="main.java.pages.FollowingPage" target="main.java.pages.Page">
+      <point x="0.0" y="-139.0" />
+      <point x="657.0" y="857.0" />
+      <point x="569.5833333333334" y="857.0" />
+      <point x="18.83333333333337" y="73.0" />
+    </edge>
+    <edge source="main.java.pages.LoginPage" target="main.java.pages.Page">
+      <point x="0.0" y="-40.0" />
+      <point x="444.5" y="857.0" />
+      <point x="531.9166666666666" y="857.0" />
+      <point x="-18.83333333333337" y="73.0" />
+    </edge>
+    <edge source="main.java.io.RAF" target="java.lang.AutoCloseable">
+      <point x="0.0" y="-94.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="main.java.model.Post" target="lombok.Getter">
+      <point x="0.0" y="-116.0" />
+      <point x="1594.0" y="798.0" />
+      <point x="1522.0" y="798.0" />
+      <point x="51.0" y="51.0" />
+    </edge>
+    <edge source="main.java.io.UserRelationRaf" target="main.java.io.RAF">
+      <point x="0.0" y="-116.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="main.java.model.User" target="lombok.Getter">
+      <point x="0.0" y="-160.0" />
+      <point x="1348.0" y="798.0" />
+      <point x="1420.0" y="798.0" />
+      <point x="-51.0" y="51.0" />
+    </edge>
+    <edge source="main.java.pages.FollowersPage" target="main.java.pages.Page">
+      <point x="0.0" y="-73.0" />
+      <point x="91.5" y="837.0" />
+      <point x="456.58333333333337" y="837.0" />
+      <point x="-94.16666666666663" y="73.0" />
+    </edge>
+    <edge source="main.java.database.FileRepository" target="main.java.database.Repository">
+      <point x="0.0" y="-160.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="main.java.pages.PostsPage" target="main.java.pages.Page">
+      <point x="0.0" y="-73.0" />
+      <point x="1091.0" y="837.0" />
+      <point x="644.9166666666666" y="837.0" />
+      <point x="94.16666666666663" y="73.0" />
+    </edge>
+    <edge source="main.java.pages.MainPage" target="main.java.pages.Page">
+      <point x="0.0" y="-40.0" />
+      <point x="891.5" y="847.0" />
+      <point x="607.25" y="847.0" />
+      <point x="56.5" y="73.0" />
+    </edge>
+    <edge source="main.java.io.PostRaf" target="main.java.io.RAF">
+      <point x="0.0" y="-105.0" />
+      <point x="1292.5" y="321.0" />
+      <point x="1037.6666666666667" y="321.0" />
+      <point x="76.66666666666674" y="94.0" />
+    </edge>
+    <edge source="main.java.model.UserRelation" target="lombok.Data">
+      <point x="0.0" y="-160.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="main.java.pages.ProfilePage" target="main.java.pages.Page">
+      <point x="0.0" y="-51.0" />
+      <point x="280.0" y="847.0" />
+      <point x="494.25" y="847.0" />
+      <point x="-56.5" y="73.0" />
+    </edge>
+    <edge source="main.java.io.UserRaf" target="main.java.io.RAF">
+      <point x="0.0" y="-105.0" />
+      <point x="530.0" y="321.0" />
+      <point x="884.3333333333334" y="321.0" />
+      <point x="-76.66666666666663" y="94.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.36308539944903584" x="917.0" y="897.4999999999999" />
+  <SelectedNodes>
+    <node>lombok.Getter</node>
+    <node>main.java.ui.Printer</node>
+    <node>main.java.io.RAF</node>
+    <node>main.java.database.RepositoryFactory</node>
+    <node>main.java.pages.FollowersPage</node>
+    <node>java.lang.AutoCloseable</node>
+    <node>main.java.pages.ProfilePage</node>
+    <node>main.java.model.User</node>
+    <node>main.java.ui.StrHelper</node>
+    <node>main.java.Main</node>
+    <node>main.java.ui.Menu</node>
+    <node>main.java.pages.LoginPage</node>
+    <node>main.java.model.Post</node>
+    <node>main.java.pages.FollowingPage</node>
+    <node>main.java.io.UserRaf</node>
+    <node>main.java.io.UserRelationRaf</node>
+    <node>main.java.io.PostRaf</node>
+    <node>main.java.lifecycle.Application</node>
+    <node>main.java.database.Repository</node>
+    <node>main.java.pages.Page</node>
+    <node>main.java.model.UserRelation</node>
+    <node>main.java.database.FileRepository</node>
+    <node>main.java.account.Credentials</node>
+    <node>main.java.lifecycle.PageManager</node>
+    <node>main.java.pages.PostsPage</node>
+    <node>lombok.Data</node>
+    <node>main.java.pages.MainPage</node>
+    <node>main.java.ui.Input</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
