@@ -101,7 +101,7 @@ public class FollowingPage extends Page {
     }
 
     private void followingPostsMenu(User following) {
-        ArrayList<Post> posts = repository.getPostsBy(following);
+        ArrayList<Post> posts = repository.getPostsBy(following.getId());
         posts.forEach(System.out::println);
         Printer.printLine();
         Menu.printUserPostsMenu();
