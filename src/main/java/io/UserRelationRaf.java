@@ -9,7 +9,7 @@ import java.util.function.BiFunction;
 
 
 public class UserRelationRaf extends RAF<UserRelation> {
-    private static final String ADDRESS = "";
+    private static final String ADDRESS = "usersRelations.txt";
 
     public static final int FOLLOWING = 0;
     public static final int FOLLOWER = 1;

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserRaf extends RAF<User> {
-    public static final String ADDRESS = "";
+    public static final String ADDRESS = "users.txt";
 
     public static final int POSTS_SIZE_LEN = 4,
             FOLLOWINGS_SIZE_LEN = 4,
@@ -24,15 +24,12 @@ public class UserRaf extends RAF<User> {
         // id recordLen username password name  bio   postsSize followingsSize followersSize
         // 4  4         2+len    2+len    2+len 2+len 4         4              4
         getRaf().seek(getEndOfRaf());
-        getRaf().writeInt(obj.getId()); // TODO: 6/19/2020 need id
+        getRaf().writeInt(obj.getId()); // pTODO: 6/19/2020 need id
         getRaf().writeInt(getRecordLen(obj));
         getRaf().writeUTF(obj.getUsername());
         getRaf().writeUTF(obj.getPassword());
         getRaf().writeUTF(obj.getName());
         getRaf().writeUTF(obj.getBio());
-        getRaf().writeInt(obj.getPostsSize());
-        getRaf().writeInt(obj.getFollowersSize());
-        getRaf().writeInt(obj.getFollowersSize());
     }
 
     public ArrayList<User> getAllUsers(PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PostRaf extends RAF<Post> {
-    public static final String ADDRESS = "";
+    public static final String ADDRESS = "posts.txt";
 
     public static final int USER_ID_LEN = 4;
     public static final int POST_ID_LEN = 4;
