@@ -1,5 +1,6 @@
 package main.java.io;
 
+import lombok.SneakyThrows;
 import main.java.model.User;
 
 import java.io.IOException;
@@ -23,22 +24,29 @@ public class UserRaf extends RAF<User> {
     public void add(User obj) throws IOException {
         // id recordLen username password name  bio   postsSize followingsSize followersSize
         // 4  4         2+len    2+len    2+len 2+len 4         4              4
-        getRaf().seek(getEndOfRaf());
-        getRaf().writeInt(obj.getId()); // pTODO: 6/19/2020 need id
-        getRaf().writeInt(getRecordLen(obj));
-        getRaf().writeUTF(obj.getUsername());
-        getRaf().writeUTF(obj.getPassword());
-        getRaf().writeUTF(obj.getName());
-        getRaf().writeUTF(obj.getBio());
+        seekEnd();
+        writeInt(newId());
+        writeInt(getRecordLen(obj));
+        writeStr(obj.getUsername());
+        writeStr(obj.getPassword());
+        writeStr(obj.getName());
+        writeStr(obj.getBio());
+    }
+
+    @SneakyThrows
+    @Override
+    public void writeDefaults() {
+        // TODO: 7/14/2020 fill this shit
+
     }
 
     public ArrayList<User> getAllUsers(PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
         ArrayList<User> list = new ArrayList<>();
-        getRaf().seek(0);
+        seekStart();
 
-        while (getRaf().getFilePointer() < getRaf().length()) {
-            int id = getRaf().readInt();
-            getRaf().skipBytes(4);// skip recordLen
+        while (!isPointerAtEnd()) {
+            int id = readInt();
+            skip(4);// skip recordLen
             User user = getUserInfo(id, postRaf, userRelationRaf);
             list.add(user);
         }
@@ -53,13 +61,13 @@ public class UserRaf extends RAF<User> {
     }
 
     public User getUserById(int userId, PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
-        getRaf().seek(0);
+        seekStart();
 
-        while (getRaf().getFilePointer() < getRaf().length()) {
-            int id = getRaf().readInt();
-            int recordLen = getRaf().readInt();
+        while (!isPointerAtEnd()) {
+            int id = readInt();
+            int recordLen = readInt();
             if (id != userId) {
-                getRaf().skipBytes(recordLen); // skip record
+                skip(recordLen); // skip record
                 continue;
             }
 
@@ -70,10 +78,10 @@ public class UserRaf extends RAF<User> {
     }
 
     private User getUserInfo(int id, PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
-        String username = getRaf().readUTF();
-        String password = getRaf().readUTF();
-        String name = getRaf().readUTF();
-        String bio = getRaf().readUTF();
+        String username = readStr();
+        String password = readStr();
+        String name = readStr();
+        String bio = readStr();
         int postsSize = postRaf.getUserPostsSize(id);
         int followingSize = userRelationRaf.userFollowingsCount(id);
         int followerSize = userRelationRaf.userFollowersCount(id);

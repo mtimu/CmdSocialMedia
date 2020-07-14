@@ -22,13 +22,15 @@ public class UserRelationRaf extends RAF<UserRelation> {
     public void add(UserRelation obj) throws IOException {
         // id userId followerId
         // 4  4      4
-        getRaf().seek(getEndOfRaf()); // TODO: 6/19/2020 set space for raf scheme
-        // TODO: 6/19/2020 replace seek with skip
+        seekEnd();
+        writeInt(newId());
+        writeInt(obj.getUserId());
+        writeInt(obj.getFollowerId());
+    }
 
-        getRaf().writeInt(obj.getId()); // TODO: 6/19/2020 use new id
-        getRaf().writeInt(obj.getUserId());
-        getRaf().writeInt(obj.getFollowerId());
-
+    @Override
+    public void writeDefaults() {
+        // TODO: 7/14/2020 fill this shit
     }
 
     public List<Integer> getUserFollowingsIds(int userId) throws IOException {
@@ -41,11 +43,11 @@ public class UserRelationRaf extends RAF<UserRelation> {
 
     private List<Integer> getUsersId(BiFunction<Integer, Integer, Integer> condition) throws IOException {
         List<Integer> list = new ArrayList<>();
-        getRaf().seek(0);
-        while (getRaf().getFilePointer() < getRaf().length()) {
-            getRaf().skipBytes(4); // skip relation id
-            int eachUserId = getRaf().readInt();
-            int eachFollowerId = getRaf().readInt();
+        seekStart();
+        while (!isPointerAtEnd()) {
+            skip(4); // skip relation id
+            int eachUserId = readInt();
+            int eachFollowerId = readInt();
             int result = condition.apply(eachUserId , eachFollowerId);
             if (result != -1)
                 list.add(result);
@@ -56,12 +58,12 @@ public class UserRelationRaf extends RAF<UserRelation> {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean haveThisRelation(int userId , int secondUserId , int relation) throws IOException {
-        getRaf().seek(0);
+        seekStart();
 
-        while (getRaf().getFilePointer() < getRaf().length()) {
-            getRaf().skipBytes(4); // skip relation id
-            int eachUserId = getRaf().readInt();
-            int eachFollowerId = getRaf().readInt();
+        while (!isPointerAtEnd()) {
+            skip(4); // skip relation id
+            int eachUserId = readInt();
+            int eachFollowerId = readInt();
             if (relation == FOLLOWER) if (secondUserId == eachFollowerId && userId == eachUserId)
                 return true;
 
@@ -77,12 +79,12 @@ public class UserRelationRaf extends RAF<UserRelation> {
 
     public int userFollowersCount(int userId) throws IOException {
         int sum = 0;
-        getRaf().seek(0);
+        seekStart();
 
-        while (getRaf().getFilePointer() < getRaf().length()) {
-            getRaf().skipBytes(4); // skip relation id
-            int eachUserId = getRaf().readInt();
-            getRaf().skipBytes(4); // skip followerId
+        while (!isPointerAtEnd()) {
+            skip(4); // skip relation id
+            int eachUserId = readInt();
+            skip(4); // skip followerId
             if (eachUserId == userId)
                 sum++;
         }
@@ -92,12 +94,12 @@ public class UserRelationRaf extends RAF<UserRelation> {
 
     public int userFollowingsCount(int userId) throws IOException {
         int sum = 0;
-        getRaf().seek(0);
+        seekStart();
 
-        while (getRaf().getFilePointer() < getRaf().length()) {
-            getRaf().skipBytes(4); // skip relation id
-            getRaf().skipBytes(4); // skip userId
-            int eachFollowerId = getRaf().readInt();
+        while (!isPointerAtEnd()) {
+            skip(4); // skip relation id
+            skip(4); // skip userId
+            int eachFollowerId = readInt();
             if (eachFollowerId == userId)
                 sum++;
         }
