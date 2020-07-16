@@ -4,6 +4,7 @@ import main.java.model.Post;
 import main.java.model.User;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public abstract class Repository {
 
@@ -17,6 +18,10 @@ public abstract class Repository {
     public abstract boolean likePostById(int postId);
     //endregion
 
+
+    public abstract void addUser(User user);
+
+    public abstract Optional<User> getUserByUserPass(String username , String password);
 
     public abstract User getUserFollowing(int userId, int followingId);
 

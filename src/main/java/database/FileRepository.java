@@ -1,5 +1,6 @@
 package main.java.database;
 
+import lombok.SneakyThrows;
 import main.java.io.PostRaf;
 import main.java.io.UserRaf;
 import main.java.io.UserRelationRaf;
@@ -10,6 +11,7 @@ import main.java.model.UserRelation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FileRepository extends Repository {
     static Repository INSTANCE;
@@ -73,9 +75,24 @@ public class FileRepository extends Repository {
             return false;
         }
     }
+
     //endregion
 
     //region User methods
+    @SneakyThrows
+    @Override
+    public void addUser(User user) {
+        userRaf.add(user);
+    }
+
+    @Override
+    public Optional<User> getUserByUserPass(String username , String password) {
+        return getAllUsers().stream()
+                .filter(each -> each.getUsername().equals(username))
+                .filter(each -> each.getPassword().equals(password))
+                .findFirst();
+    }
+
     @Override
     public ArrayList<User> getAllUsers() {
         try {
