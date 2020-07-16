@@ -1,7 +1,7 @@
 package main.java.pages;
 
-import main.java.database.Repository;
 import main.java.account.Credentials;
+import main.java.database.Repository;
 import main.java.database.RepositoryFactory;
 import main.java.model.Post;
 import main.java.ui.Menu;
@@ -72,7 +72,7 @@ public class PostsPage extends Page {
 
         if (post == null) Printer.printERR("No Post with This Id");
         else Printer.println(post.toString() , Printer.COLOR_YELLOW);
-
+        getInput().pressEnterToContinue();
         onStart();
     }
 
