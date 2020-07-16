@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class Credentials {
     private static Credentials credentials;
-    private Repository repository;
+    private final Repository repository;
     private User userInSystem;
 
 
