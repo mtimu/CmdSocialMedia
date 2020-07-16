@@ -1,9 +1,6 @@
 package main.java.ui;
 
-import main.java.pages.FollowersPage;
-import main.java.pages.FollowingPage;
-import main.java.pages.MainPage;
-import main.java.pages.PostsPage;
+import main.java.pages.*;
 
 /**
  * simple class to build program menus
@@ -17,12 +14,18 @@ public class Menu {
     public static void printInvalidOptionMenu() {
         String title = "Invalid Choice Menu";
         String[] menu = {
-                "Choose Again",
+                "Choose Again" ,
                 "java.Main Menu"
         };
 
         String[] indices = createIndicesFrom(menu);
-        System.out.println(createMenuFrom(title , menu , indices));;
+        System.out.println(createMenuFrom(title , menu , indices));
+        ;
+    }
+
+    public static void printLoginMenu() {
+        String[] indices = createIndicesFrom(LoginPage.MENU);
+        System.out.println(createMenuFrom(LoginPage.TITLE , LoginPage.MENU , indices));
     }
 
     public static void printMainMenu() {
