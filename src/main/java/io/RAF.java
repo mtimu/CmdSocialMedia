@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public abstract class RAF<T> implements AutoCloseable {
-    public static final String BASE_ADDRESS = "/src/main/resources/";
-    private File file;
+    public static final String BASE_ADDRESS = "\\src\\main\\resources\\";
+    private final File file;
 
     private RandomAccessFile raf;
 
@@ -53,6 +53,7 @@ public abstract class RAF<T> implements AutoCloseable {
     //endregion
 
     //region Seek methods
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public final boolean isPointerAtEnd() throws IOException {
         return raf.getFilePointer() >= raf.length();
     }
@@ -75,7 +76,7 @@ public abstract class RAF<T> implements AutoCloseable {
     }
 
     public final void seekEnd() throws IOException {
-        skip((int) raf.length());
+        seek(raf.length());
     }
 
     public final boolean isEmpty() {
@@ -96,10 +97,14 @@ public abstract class RAF<T> implements AutoCloseable {
 
     // TODO: 7/14/2020 this looks like shit! clean it up!
     public static String getDynamicAddress(String fileAddress) {
-        File file = new File(BASE_ADDRESS + fileAddress);
+        String projectAddress = new File("").getAbsolutePath();
+
+        File file = new File(projectAddress + BASE_ADDRESS + fileAddress);
         if (!file.exists()) {
             try {
-                file.createNewFile();
+                System.out.println("Create " + fileAddress + " in resources folder");
+                boolean fileCreated = file.createNewFile();
+                if (!fileCreated) throw new IOException("Failed to create file with address: " + fileAddress);
             } catch (IOException e) {
                 System.err.println("Failed to create file with address: " + fileAddress);
                 e.printStackTrace();
