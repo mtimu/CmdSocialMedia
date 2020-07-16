@@ -24,8 +24,9 @@ public class UserRaf extends RAF<User> {
     public void add(User obj) throws IOException {
         // id recordLen username password name  bio   postsSize followingsSize followersSize
         // 4  4         2+len    2+len    2+len 2+len 4         4              4
+        int newId = newId(); // do this first to avoid any pointer problem
         seekEnd();
-        writeInt(newId());
+        writeInt(newId);
         writeInt(getRecordLen(obj));
         writeStr(obj.getUsername());
         writeStr(obj.getPassword());
@@ -36,8 +37,8 @@ public class UserRaf extends RAF<User> {
     @SneakyThrows
     @Override
     public void writeDefaults() {
-        // TODO: 7/14/2020 fill this shit
-
+        seek(0);
+        writeInt(1_000);
     }
 
     public ArrayList<User> getAllUsers(PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {

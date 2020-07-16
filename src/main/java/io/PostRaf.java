@@ -1,5 +1,6 @@
 package main.java.io;
 
+import lombok.SneakyThrows;
 import main.java.model.Post;
 
 
@@ -24,19 +25,21 @@ public class PostRaf extends RAF<Post> {
         // 4      4            4  4     2           n     2             m
 
 
-        int recordLength = getRecordLen(obj);
+
+        int newId = newId();
         seekEnd();
         writeInt(obj.getUserId());
-        writeInt(recordLength);
-        writeInt(newId());
+        writeInt(getRecordLen(obj));
+        writeInt(newId);
         writeInt(obj.getLikes());
         writeStr(obj.getTitle());
         writeStr(obj.getCaption());
     }
 
+    @SneakyThrows
     @Override
     public void writeDefaults() {
-        // TODO: 7/14/2020 fill this shit
+       writeInt(500_000);
     }
 
     public ArrayList<Post> getPostsByUser(int userId) throws IOException {

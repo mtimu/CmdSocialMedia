@@ -1,5 +1,6 @@
 package main.java.io;
 
+import lombok.SneakyThrows;
 import main.java.model.UserRelation;
 
 import java.io.IOException;
@@ -22,15 +23,17 @@ public class UserRelationRaf extends RAF<UserRelation> {
     public void add(UserRelation obj) throws IOException {
         // id userId followerId
         // 4  4      4
+        int newId = newId();
         seekEnd();
-        writeInt(newId());
+        writeInt(newId);
         writeInt(obj.getUserId());
         writeInt(obj.getFollowerId());
     }
 
+    @SneakyThrows
     @Override
     public void writeDefaults() {
-        // TODO: 7/14/2020 fill this shit
+        writeInt(1_000_000);
     }
 
     public List<Integer> getUserFollowingsIds(int userId) throws IOException {
