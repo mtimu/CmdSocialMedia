@@ -1,14 +1,19 @@
 package main.java.account;
 
+import main.java.database.Repository;
+import main.java.database.RepositoryFactory;
 import main.java.model.User;
+
+import java.util.Optional;
 
 public class Credentials {
     private static Credentials credentials;
+    private Repository repository;
     private User userInSystem;
 
 
     private Credentials() {
-
+        repository = RepositoryFactory.getInstance();
     }
 
     public static Credentials getInstance() {
@@ -19,11 +24,10 @@ public class Credentials {
         return credentials;
     }
 
-    public User authenticate(String username , String password) {
-        // TODO: 6/13/2020 check in system
-        User user = new User(12 , "Mehdi" , "Ali" , "123","Shine Bright Like A Diamond");
-        setUserInSystem(user);
-        return user;
+    public boolean authenticate(String username , String password) {
+        Optional<User> user = repository.getUserByUserPass(username , password);
+        user.ifPresent(this::setUserInSystem);
+        return user.isPresent();
     }
 
     public User getUserInSystem() {
@@ -36,7 +40,7 @@ public class Credentials {
 
 
     public void logout() {
-
+        // TODO: 7/16/2020 complete this shit!
     }
 
 }
