@@ -119,7 +119,7 @@ public class FollowingPage extends Page {
     }
 
     private void followingSinglePostMenu(Post post) {
-        Printer.print(post.getExpandedDetail() , Printer.COLOR_YELLOW);
+        Printer.println(post.getExpandedDetail() , Printer.COLOR_YELLOW);
         Printer.printLine();
         Menu.printPostDetailMenu();
 
