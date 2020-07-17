@@ -49,7 +49,7 @@ public class UserRaf extends RAF<User> {
         while (!isPointerAtEnd()) {
             int id = readInt();
             skip(4);// skip recordLen
-            User user = getUserInfo(id, postRaf, userRelationRaf);
+            User user = getUserInfo(id , postRaf , userRelationRaf);
             list.add(user);
         }
 
@@ -75,7 +75,7 @@ public class UserRaf extends RAF<User> {
         int followingSize = userRelationRaf.userFollowingsCount(id);
         int followerSize = userRelationRaf.userFollowersCount(id);
         User user = new User(id , name , username , password , bio);
-        user.setSize(followingSize , followerSize , postsSize);
+        user.setExtraInformation(postsSize , followerSize , followingSize);
         return user;
     }
 
