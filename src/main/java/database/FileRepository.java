@@ -156,9 +156,10 @@ public class FileRepository extends Repository {
     }
 
     @Override
-    public boolean followUser(User currentUser , int followerId) {
+    public boolean followUser(User currentUser , int followingId) {
         try {
-            userRelationRaf.add(new UserRelation(-1,currentUser.getId(),followerId));
+            // current user become a following of <<followingId>>
+            userRelationRaf.add(new UserRelation(-1 , followingId , currentUser.getId()));
             return true;
         } catch (IOException e) {
             // TODO: 6/19/2020 log error

@@ -34,6 +34,6 @@ public abstract class Repository {
 
     public abstract ArrayList<User> getUserFollowers(User user);
 
-    public abstract boolean followUser(User currentUser , int followerId);
+    public abstract boolean followUser(User currentUser , int followingId);
 
 }
