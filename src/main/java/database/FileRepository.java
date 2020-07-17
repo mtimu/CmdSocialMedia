@@ -67,6 +67,7 @@ public class FileRepository extends Repository {
 
     @Override
     public boolean likePostById(int postId) {
+        // TODO: 7/17/2020 this need another RAF class to save who likes which posts for distinct number of likes.
         try {
             postRaf.likePostById(postId);
             return true;
