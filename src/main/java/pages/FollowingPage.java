@@ -74,7 +74,7 @@ public class FollowingPage extends Page {
         // follow a user
         boolean success = repository.followUser(credentials.getUserInSystem() , choice);
 
-        if (success) Printer.println("Add User to your followings successfully" , Printer.COLOR_GREEN);
+        if (success) Printer.println("User added to your followings successfully" , Printer.COLOR_GREEN);
         else Printer.printERR("Add User To followings failed!");
         addFollowing();
     }
