@@ -1,16 +1,18 @@
 package main.java.pages;
 
-import main.java.database.Repository;
 import main.java.account.Credentials;
+import main.java.database.Repository;
 import main.java.database.RepositoryFactory;
 import main.java.model.User;
 import main.java.ui.Menu;
 import main.java.ui.Printer;
 
+import java.util.Optional;
+
 public class FollowersPage extends Page {
     public static String title = "Follower Menu";
     public static String[] menu = {
-            "User Page",
+            "User Page" ,
             "Exit"
     };
 
@@ -42,13 +44,13 @@ public class FollowersPage extends Page {
     }
 
     private void showUserProfile(int followerId) {
-        User user = repository.getUserFollower(credentials.getUserInSystem().getId(), followerId);
+        Optional<User> user = repository.getUserFollower(credentials.getUserInSystem().getId() , followerId);
 
-        if (user == null) Printer.printERR("User Is Not your Follower");
-        else {
+
+        if (user.isPresent()) {
             System.out.println(user);
             getInput().pressEnterToContinue();
-        }
+        } else Printer.printERR("User Is Not your Follower");
 
         onStart();
     }
