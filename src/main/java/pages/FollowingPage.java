@@ -19,8 +19,8 @@ public class FollowingPage extends Page {
     };
 
     public static final int EXIT = 0;
-    public static final int ADD_FOLLOWING = 2;
     public static final int SHOW_POSTS = 1;
+    public static final int ADD_FOLLOWING = 2;
 
     private Credentials credentials;
     private Repository repository;
