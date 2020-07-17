@@ -27,7 +27,7 @@ public class User{
         this.bio = bio;
     }
 
-    public void setSize(int postsSize , int followersSize , int followingsSize) {
+    public void setExtraInformation(int postsSize , int followersSize , int followingsSize) {
         this.postsSize = postsSize;
         this.followersSize = followersSize;
         this.followingsSize = followingsSize;
