@@ -1,7 +1,7 @@
 package main.java.pages;
 
-import main.java.database.Repository;
 import main.java.account.Credentials;
+import main.java.database.Repository;
 import main.java.database.RepositoryFactory;
 import main.java.model.Post;
 import main.java.model.User;
@@ -53,7 +53,7 @@ public class FollowingPage extends Page {
                 followingProfileMenu(choice);
         }
 
-        followingMenu();
+        if (choice != EXIT) followingMenu();
     }
 
     private void addFollowingMenu() {
