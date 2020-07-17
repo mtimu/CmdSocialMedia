@@ -127,13 +127,13 @@ public class FileRepository extends Repository {
     }
 
     @Override
-    public User getUserFollowing(int userId, int followingId) {
+    public User getUserFollowing(int userId , int secondUserId) {
         try {
             // return null if doesnt have a relation
-            if (!userRelationRaf.haveThisRelation(userId , followingId, UserRelationRaf.FOLLOWING))
+            if (!userRelationRaf.haveThisRelation(userId , secondUserId , UserRelationRaf.FOLLOWING))
                 return null;
 
-            return userRaf.getUserById(followingId, postRaf, userRelationRaf);
+            return userRaf.getUserById(secondUserId , postRaf , userRelationRaf);
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
             return null;
