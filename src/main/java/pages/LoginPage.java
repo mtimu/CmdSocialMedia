@@ -45,7 +45,7 @@ public class LoginPage extends Page {
 
         Printer.printERR("Wrong Login Information");
         Printer.printLine();
-        auth();
+        onStart();
     }
 
 }
