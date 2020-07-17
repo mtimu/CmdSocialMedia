@@ -21,8 +21,11 @@ public class Post {
 
 
     public String getExpandedDetail() {
-        // TODO: 6/17/2020 complete this part
-        return "";
+        StringBuilder builder = new StringBuilder();
+        builder.append("Post{").append(getId()).append("}: ").append("\n")
+                .append("Title: ").append(getTitle()).append("\tLikes: ").append(getLikes()).append("\n")
+                .append("Caption: ").append(getCaption());
+        return builder.toString();
     }
 
     @Override
