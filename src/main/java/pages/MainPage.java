@@ -5,7 +5,7 @@ import main.java.ui.Menu;
 import main.java.ui.Printer;
 
 public class MainPage extends Page {
-    public final static String title = "java.Main Menu";
+    public final static String title = "Main Menu";
     public final static String[] menu = {
             "Profile" ,
             "Posts" ,
