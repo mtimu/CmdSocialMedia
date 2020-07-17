@@ -59,6 +59,16 @@ public class UserRelationRaf extends RAF<UserRelation> {
         return list;
     }
 
+    /**
+     * if Relation == FOLLOWING, means *userId* follow *secondUserId*
+     * else if Relation == FOLLOWER, means *secondUserId* follow *userId*
+     *
+     * @param userId
+     * @param secondUserId
+     * @param relation     could be either FOLLOWING or FOLLOWER
+     * @return return true if two users have specified relation
+     * @throws IOException
+     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean haveThisRelation(int userId , int secondUserId , int relation) throws IOException {
         seekStart();
@@ -67,13 +77,14 @@ public class UserRelationRaf extends RAF<UserRelation> {
             skip(4); // skip relation id
             int eachUserId = readInt();
             int eachFollowerId = readInt();
-            if (relation == FOLLOWER) if (secondUserId == eachFollowerId && userId == eachUserId)
-                return true;
 
-            if (relation == FOLLOWING) {
+            if (relation == FOLLOWER)
+                if (userId == eachUserId && secondUserId == eachFollowerId)
+                    return true;
+
+            if (relation == FOLLOWING)
                 if (eachUserId == secondUserId && eachFollowerId == userId)
                     return true;
-            }
 
         }
 
