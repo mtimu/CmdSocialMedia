@@ -23,9 +23,9 @@ public abstract class Repository {
 
     public abstract Optional<User> getUserByUserPass(String username , String password);
 
-    public abstract User getUserFollowing(int userId, int followingId);
+    public abstract Optional<User> getUserFollowing(int userId , int followingId);
 
-    public abstract User getUserFollower(int userId, int followerId);
+    public abstract Optional<User> getUserFollower(int userId , int followerId);
 
 
     public abstract ArrayList<User> getAllUsers();

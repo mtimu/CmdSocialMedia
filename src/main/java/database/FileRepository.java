@@ -127,39 +127,40 @@ public class FileRepository extends Repository {
     }
 
     @Override
-    public User getUserFollowing(int userId , int secondUserId) {
+    public Optional<User> getUserFollowing(int userId , int secondUserId) {
+        Optional<User> result = Optional.empty();
         try {
             // return null if doesnt have a relation
-            if (!userRelationRaf.haveThisRelation(userId , secondUserId , UserRelationRaf.FOLLOWING))
-                return null;
-
-            return userRaf.getUserById(secondUserId , postRaf , userRelationRaf);
+            if (userRelationRaf.haveThisRelation(userId , secondUserId , UserRelationRaf.FOLLOWING))
+                result = userRaf.getUserById(secondUserId , postRaf , userRelationRaf);
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
-            return null;
         }
+
+        return result;
     }
 
     @Override
-    public User getUserFollower(int userId , int followerId) {
+    public Optional<User> getUserFollower(int userId , int followerId) {
+        Optional<User> result = Optional.empty();
 
         try {
             // return null if doesnt have a relation
-            if (!userRelationRaf.haveThisRelation(userId , followerId,UserRelationRaf.FOLLOWER))
-                return null;
+            if (userRelationRaf.haveThisRelation(userId , followerId , UserRelationRaf.FOLLOWER))
+                result = userRaf.getUserById(followerId , postRaf , userRelationRaf);
 
-            return userRaf.getUserById(followerId, postRaf, userRelationRaf);
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
-            return null;
         }
+
+        return result;
     }
 
     @Override
-    public boolean followUser(User currentUser , int followingId) {
+    public boolean followUser(User currentUser , int secondUserId) {
         try {
-            // current user become a following of <<followingId>>
-            userRelationRaf.add(new UserRelation(-1 , followingId , currentUser.getId()));
+            // current user become a following of <<secondUserId>>
+            userRelationRaf.add(new UserRelation(-1 , secondUserId , currentUser.getId()));
             return true;
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
