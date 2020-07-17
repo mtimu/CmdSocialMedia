@@ -6,6 +6,7 @@ import main.java.model.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserRaf extends RAF<User> {
@@ -55,30 +56,17 @@ public class UserRaf extends RAF<User> {
         return list;
     }
 
-    public ArrayList<User> getUserFromList(List<Integer> followingsOfUserIds, PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
+    public ArrayList<User> getUserFromList(List<Integer> followingsOfUserIds , PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
         return getAllUsers(postRaf , userRelationRaf).stream()
                 .filter(user -> followingsOfUserIds.contains(user.getId()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public User getUserById(int userId, PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
-        seekStart();
-
-        while (!isPointerAtEnd()) {
-            int id = readInt();
-            int recordLen = readInt();
-            if (id != userId) {
-                skip(recordLen); // skip record
-                continue;
-            }
-
-            return getUserInfo(id, postRaf, userRelationRaf);
-        }
-
-        return null;
+    public Optional<User> getUserById(int userId , PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
+        return getAllUsers(postRaf , userRelationRaf).stream().filter(user -> user.getId() == userId).findFirst();
     }
 
-    private User getUserInfo(int id, PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
+    private User getUserInfo(int id , PostRaf postRaf , UserRelationRaf userRelationRaf) throws IOException {
         String username = readStr();
         String password = readStr();
         String name = readStr();
