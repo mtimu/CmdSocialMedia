@@ -145,7 +145,6 @@ public class FollowingPage extends Page {
         else Printer.printERR("Failed to Like Post!");
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     private Post getPostById(ArrayList<Post> posts , int postId) {
         return posts.stream().filter(post -> post.getId() == postId).findFirst().orElse(null);
     }
