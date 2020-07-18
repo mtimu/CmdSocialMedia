@@ -13,3 +13,8 @@ It wasn't part of the project, but I used **Lombok** and **Reflection** in some 
 
 ## How To Run The Project
 You can open the project in Intellij IDEA or use the jar version of project in release section.
+
+
+## Project Overview
+Overview of project and classes
+![Project Overview](https://github.com/MohammadNik/CmdSocialMedia/blob/master/ProjectOverview.svg)
