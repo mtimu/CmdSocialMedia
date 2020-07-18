@@ -45,9 +45,11 @@ public class Input {
         return strIn(TITLE);
     }
 
+    // TODO: 7/14/2020 fix this shit
     public String strIn(String title) {
-        Printer.print(title+": ",Printer.COLOR_GREEN);
-        return scanner.next().trim();
+        Printer.print(title + ": " , Printer.COLOR_GREEN);
+        String val = scanner.nextLine().trim();
+        return val;
     }
 
     public void pressEnterToContinue() {
