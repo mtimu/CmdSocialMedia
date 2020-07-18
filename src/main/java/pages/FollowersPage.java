@@ -37,6 +37,7 @@ public class FollowersPage extends Page {
         if (userFollowers.isEmpty()) {
             Printer.printERR(String.format("%s has no follower" , credentials.getUserInSystem().getName()));
             getInput().pressEnterToContinue();
+            getPageManager().addToStack(MainPage.class);
             return;
         }
 
