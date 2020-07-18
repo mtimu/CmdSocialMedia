@@ -58,9 +58,14 @@ public class FollowingPage extends Page {
     }
 
     private void addFollowingMenu() {
-        repository.getAllUsers().stream()
-                .filter(user -> user.getId() != credentials.getUserInSystem().getId())
-                .forEach(user -> System.out.println(user.inlinePrintForm()));
+        ArrayList<User> suggestion = repository.getFollowingSuggestionFor(credentials.getUserInSystem());
+        suggestion.forEach(user -> System.out.println(user.inlinePrintForm()));
+
+        if (suggestion.isEmpty()) {
+            Printer.printERR("No user to follow");
+            getInput().pressEnterToContinue();
+            return;
+        }
 
         Printer.printLine();
         Menu.printAddFollowingMenu();
