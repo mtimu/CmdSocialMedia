@@ -6,7 +6,7 @@ import main.java.model.User;
 
 import java.util.Optional;
 
-public class Credentials {
+public final class Credentials {
     private static Credentials credentials;
     private final Repository repository;
     private User userInSystem;
@@ -40,7 +40,7 @@ public class Credentials {
 
 
     public void logout() {
-        // TODO: 7/16/2020 complete this shit!
+        userInSystem = null;
     }
 
 }
