@@ -12,4 +12,13 @@ save changes through the program in files.
 It wasn't part of the project, but I used **Lombok** and **Reflection** in some parts.
 
 ## How To Run The Project
-You can open the project in Intellij IDEA or use the jar version of project in release section.
+You can open the project in Intellij IDEA or use the jar version of project in [Release Section](https://github.com/MohammadNik/CmdSocialMedia/releases).
+
+
+## Project Overview
+Overview of project and classes
+![Project Overview](https://github.com/MohammadNik/CmdSocialMedia/blob/master/ProjectOverview.svg)
+
+
+## Be Cautious
+Project still need debugging, modification and refactoring. There are some todos still need to be done. in case you don't know, be aware of them. :)
