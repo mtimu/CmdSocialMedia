@@ -3,11 +3,10 @@ package main.java.io;
 import lombok.SneakyThrows;
 import main.java.model.Post;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PostRaf extends RAF<Post> {
+public final class PostRaf extends RAF<Post> {
     public static final String ADDRESS = "posts.txt";
 
     public static final int USER_ID_LEN = 4;

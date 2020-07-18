@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class UserRaf extends RAF<User> {
+public final class UserRaf extends RAF<User> {
     public static final String ADDRESS = "users.txt";
 
     public static final int POSTS_SIZE_LEN = 4,

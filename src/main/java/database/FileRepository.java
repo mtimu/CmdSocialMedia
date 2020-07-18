@@ -16,7 +16,7 @@ import java.util.Optional;
 import static main.java.io.UserRelationRaf.FOLLOWER;
 import static main.java.io.UserRelationRaf.FOLLOWING;
 
-public class FileRepository extends Repository {
+public final class FileRepository extends Repository {
     static Repository INSTANCE;
     private final PostRaf postRaf;
     private final UserRaf userRaf;
