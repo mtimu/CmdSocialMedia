@@ -7,6 +7,7 @@ import main.java.model.User;
 import main.java.ui.Menu;
 import main.java.ui.Printer;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class FollowersPage extends Page {
@@ -30,7 +31,15 @@ public class FollowersPage extends Page {
 
     @Override
     public void onStart() {
-        repository.getUserFollowers(credentials.getUserInSystem()).forEach(user -> System.out.println(user.inlinePrintForm()));
+        ArrayList<User> userFollowers = repository.getUserFollowers(credentials.getUserInSystem());
+        userFollowers.forEach(user -> System.out.println(user.inlinePrintForm()));
+
+        if (userFollowers.isEmpty()) {
+            Printer.printERR(String.format("%s has no follower" , credentials.getUserInSystem().getName()));
+            getInput().pressEnterToContinue();
+            return;
+        }
+
         Printer.printLine();
         Menu.printFollowerMenu();
         followersMenu();
@@ -48,7 +57,7 @@ public class FollowersPage extends Page {
 
 
         if (user.isPresent()) {
-            System.out.println(user);
+            Printer.println(user.get().profileForOtherUsers() , Printer.COLOR_YELLOW);
             getInput().pressEnterToContinue();
         } else Printer.printERR("User Is Not your Follower");
 
