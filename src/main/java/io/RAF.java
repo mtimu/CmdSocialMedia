@@ -1,12 +1,14 @@
 package main.java.io;
 
+import main.java.Main;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public abstract class RAF<T> implements AutoCloseable {
-    public static final String BASE_ADDRESS = "\\src\\main\\resources\\";
+    public static final String FOLDER_NAME = "InstagramResources";
     private final File file;
 
     private RandomAccessFile raf;
@@ -26,23 +28,6 @@ public abstract class RAF<T> implements AutoCloseable {
 
     public abstract void writeDefaults();
 
-    public static File getFile(String fileAddress) {
-        File file = new File(getProjectAddress() + BASE_ADDRESS + fileAddress);
-
-        if (file.exists())
-            return file;
-
-        try {
-            System.out.println("Create " + fileAddress + " in resources folder");
-            boolean fileCreated = file.createNewFile();
-            if (!fileCreated) throw new IOException("Failed to create file with address: " + fileAddress);
-        } catch (IOException e) {
-            System.err.println("Failed to create file with address: " + fileAddress);
-            e.printStackTrace();
-        }
-
-        return file;
-    }
 
     //region Read Write Methods
     public final void writeInt(int value) throws IOException {
@@ -101,8 +86,32 @@ public abstract class RAF<T> implements AutoCloseable {
 
     //region Static methods
 
+    public static File getFile(String fileAddress) {
+        File file = new File(getProjectAddress() + fileAddress);
+
+        if (file.exists())
+            return file;
+
+        try {
+            System.out.println("Create " + fileAddress + " in resources folder");
+            boolean fileCreated = file.createNewFile();
+            if (!fileCreated) throw new IOException("Failed to create file with address: " + fileAddress);
+        } catch (IOException e) {
+            System.err.println("Failed to create file with address: " + fileAddress);
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
     private static String getProjectAddress() {
-        return new File("").getAbsolutePath();
+        String resourceFolder = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        resourceFolder = resourceFolder.substring(0 , resourceFolder.lastIndexOf("/") + 1) + FOLDER_NAME;
+
+        File file = new File(resourceFolder);
+        if (!file.exists()) file.mkdir();
+
+        return resourceFolder + "/";
     }
 
     public final int newId() throws IOException {
