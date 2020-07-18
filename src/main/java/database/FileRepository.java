@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static main.java.io.UserRelationRaf.FOLLOWER;
+import static main.java.io.UserRelationRaf.FOLLOWING;
+
 public class FileRepository extends Repository {
     static Repository INSTANCE;
     private final PostRaf postRaf;
@@ -132,7 +135,7 @@ public class FileRepository extends Repository {
         Optional<User> result = Optional.empty();
         try {
             // return null if doesnt have a relation
-            if (userRelationRaf.haveThisRelation(userId , secondUserId , UserRelationRaf.FOLLOWING))
+            if (userRelationRaf.haveThisRelation(userId , secondUserId , FOLLOWING))
                 result = userRaf.getUserById(secondUserId , postRaf , userRelationRaf);
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
@@ -147,7 +150,7 @@ public class FileRepository extends Repository {
 
         try {
             // return null if doesnt have a relation
-            if (userRelationRaf.haveThisRelation(userId , followerId , UserRelationRaf.FOLLOWER))
+            if (userRelationRaf.haveThisRelation(userId , followerId , FOLLOWER))
                 result = userRaf.getUserById(followerId , postRaf , userRelationRaf);
 
         } catch (IOException e) {
@@ -159,14 +162,19 @@ public class FileRepository extends Repository {
 
     @Override
     public boolean followUser(User currentUser , int secondUserId) {
+        boolean result = false;
         try {
             // current user become a following of <<secondUserId>>
-            userRelationRaf.add(new UserRelation(-1 , secondUserId , currentUser.getId()));
-            return true;
+            if (!userRelationRaf.haveThisRelation(currentUser.getId() , secondUserId , FOLLOWING)) {
+                userRelationRaf.add(new UserRelation(-1 , secondUserId , currentUser.getId()));
+                result = true;
+            }
+
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
-            return false;
         }
+
+        return result;
     }
     //endregion
 
