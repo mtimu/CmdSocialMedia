@@ -38,4 +38,6 @@ public abstract class Repository {
 
     public abstract boolean followUser(User currentUser , int followingId);
 
+    public abstract void closeResources();
+
 }

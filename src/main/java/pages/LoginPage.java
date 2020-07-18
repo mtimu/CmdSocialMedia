@@ -1,6 +1,7 @@
 package main.java.pages;
 
 import main.java.account.Credentials;
+import main.java.database.RepositoryFactory;
 import main.java.ui.Menu;
 import main.java.ui.Printer;
 
@@ -27,6 +28,7 @@ public class LoginPage extends Page {
 
             default:
                 // EXIT
+                RepositoryFactory.getInstance().closeResources();
         }
     }
 

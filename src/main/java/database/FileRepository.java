@@ -184,6 +184,15 @@ public final class FileRepository extends Repository {
 
         return result;
     }
+
     //endregion
+
+    @SneakyThrows
+    @Override
+    public void closeResources() {
+        userRaf.close();
+        postRaf.close();
+        userRelationRaf.close();
+    }
 
 }
