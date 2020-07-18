@@ -25,6 +25,8 @@ public abstract class Repository {
 
     public abstract Optional<User> getUserFollowing(int userId , int followingId);
 
+    public abstract ArrayList<User> getFollowingSuggestionFor(User user);
+
     public abstract Optional<User> getUserFollower(int userId , int followerId);
 
 

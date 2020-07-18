@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static main.java.io.UserRelationRaf.FOLLOWER;
 import static main.java.io.UserRelationRaf.FOLLOWING;
@@ -100,7 +101,7 @@ public final class FileRepository extends Repository {
     @Override
     public ArrayList<User> getAllUsers() {
         try {
-            return userRaf.getAllUsers(postRaf,userRelationRaf);
+            return userRaf.getAllUsers(postRaf , userRelationRaf);
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
             return new ArrayList<>();
@@ -108,10 +109,17 @@ public final class FileRepository extends Repository {
     }
 
     @Override
+    public ArrayList<User> getFollowingSuggestionFor(User user) {
+        return getAllUsers().stream()
+                .filter(each -> each.getId() != user.getId())
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @Override
     public ArrayList<User> getUserFollowings(User user) {
         try {
             List<Integer> userFollowingsIds = userRelationRaf.getUserFollowingsIds(user.getId());
-            return userRaf.getUserFromList(userFollowingsIds, postRaf, userRelationRaf);
+            return userRaf.getUserFromList(userFollowingsIds , postRaf , userRelationRaf);
         } catch (IOException e) {
             // TODO: 6/19/2020 log error
             return new ArrayList<>();
