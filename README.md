@@ -10,3 +10,6 @@ save changes through the program in files.
 
 ## Tools
 It wasn't part of the project, but I used **Lombok** and **Reflection** in some parts.
+
+## How To Run The Project
+You can open the project in Intellij IDEA or use the jar version of project in release section.
