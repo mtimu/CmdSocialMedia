@@ -107,15 +107,21 @@ public class FollowingPage extends Page {
     private void followingPostsMenu(User following) {
         ArrayList<Post> posts = repository.getPostsBy(following.getId());
         posts.forEach(System.out::println);
-        Printer.printLine();
-        Menu.printUserPostsMenu();
-        int choice = getInput().intIn();
+        if (posts.isEmpty()) {
+            Printer.println(String.format("%s has no posts" , following.getName()) , Printer.COLOR_YELLOW);
+            getInput().pressEnterToContinue();
+        } else {
+            Printer.printLine();
+            Menu.printUserPostsMenu();
+            int choice = getInput().intIn();
 
-        if (choice == EXIT) return;
+            if (choice == EXIT) return;
 
-        followingSinglePostMenu(getPostById(posts,choice));
+            followingSinglePostMenu(getPostById(posts , choice));
 
-        followingPostsMenu(following);
+            followingPostsMenu(following);
+        }
+
     }
 
     private void followingSinglePostMenu(Post post) {
