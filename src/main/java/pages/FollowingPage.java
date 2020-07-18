@@ -117,7 +117,8 @@ public class FollowingPage extends Page {
 
             if (choice == EXIT) return;
 
-            followingSinglePostMenu(getPostById(posts , choice));
+            Post postById = getPostById(posts , choice);
+            followingSinglePostMenu(postById);
 
             followingPostsMenu(following);
         }
@@ -125,6 +126,12 @@ public class FollowingPage extends Page {
     }
 
     private void followingSinglePostMenu(Post post) {
+        if (post == null) {
+            Printer.printERR("No Post Founded");
+            getInput().pressEnterToContinue();
+            return;
+        }
+
         Printer.println(post.getExpandedDetail() , Printer.COLOR_YELLOW);
         Printer.printLine();
         Menu.printPostDetailMenu();
@@ -140,7 +147,7 @@ public class FollowingPage extends Page {
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     private Post getPostById(ArrayList<Post> posts , int postId) {
-        return posts.stream().filter(post -> post.getId() == postId).findFirst().get();
+        return posts.stream().filter(post -> post.getId() == postId).findFirst().orElse(null);
     }
 
     @Override
@@ -149,4 +156,5 @@ public class FollowingPage extends Page {
         credentials = null;
         repository = null;
     }
+
 }
