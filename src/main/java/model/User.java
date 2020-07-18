@@ -42,8 +42,7 @@ public class User{
                 "\t\t===============\n" +
                 "\t\tPosts\tFollowers\tFollowings\n" +
                 "\t\t %d \t\t   %d \t\t\t %d\n" +
-                "\t\tBio:\n" +
-                "\t\t%s";
+                "\t\tBio: %s";
 
         return String.format(raw ,
                 getName() ,
@@ -62,8 +61,7 @@ public class User{
                 "\t\t===============\n" +
                 "\t\tPosts\tFollowers\tFollowings\n" +
                 "\t\t %d \t\t   %d \t\t\t %d\n" +
-                "\t\tBio:\n" +
-                "\t\t%s";
+                "\t\tBio: %s";
 
         return String.format(raw,
                 getName(),
