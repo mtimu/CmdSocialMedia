@@ -84,7 +84,7 @@ public class FollowingPage extends Page {
         Optional<User> user = repository.getUserFollowing(credentials.getUserInSystem().getId() , followingId);
 
         if (user.isPresent()) {
-            Printer.println(user.get().toString() , Printer.COLOR_YELLOW);
+            Printer.println(user.get().profileForOtherUsers() , Printer.COLOR_YELLOW);
             Printer.printLine();
             followingProfile(user.get());
         } else {
