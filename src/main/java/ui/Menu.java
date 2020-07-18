@@ -5,23 +5,8 @@ import main.java.pages.*;
 /**
  * simple class to build program menus
  */
-// TODO: 6/13/2020 create a pool pattern for menus too
 public class Menu {
-    public static final int INVALID_OPTION_CHOOSE_AGAIN = 1;
-    public static final int INVALID_OPTION_MAIN_MENU = 0;
 
-
-    public static void printInvalidOptionMenu() {
-        String title = "Invalid Choice Menu";
-        String[] menu = {
-                "Choose Again" ,
-                "java.Main Menu"
-        };
-
-        String[] indices = createIndicesFrom(menu);
-        System.out.println(createMenuFrom(title , menu , indices));
-        ;
-    }
 
     public static void printLoginMenu() {
         String[] indices = createIndicesFrom(LoginPage.MENU);
