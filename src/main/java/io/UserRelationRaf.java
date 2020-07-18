@@ -69,7 +69,6 @@ public class UserRelationRaf extends RAF<UserRelation> {
      * @return return true if two users have specified relation
      * @throws IOException
      */
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean haveThisRelation(int userId , int secondUserId , int relation) throws IOException {
         seekStart();
 
