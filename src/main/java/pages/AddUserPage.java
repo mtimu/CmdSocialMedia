@@ -20,8 +20,8 @@ public class AddUserPage extends Page {
     public void onStart() {
         Printer.println("Add User" , Printer.COLOR_BLUE);
         String name = getInput().lineIn("Name");
-        String username = getInput().strIn("Username");
-        String password = getInput().strIn("Password");
+        String username = getInput().lineIn("Username");
+        String password = getInput().lineIn("Password");
         String bio = getInput().lineIn("Bio");
         User user = new User(-1 , name , username , password , bio);
         repository.addUser(user);
