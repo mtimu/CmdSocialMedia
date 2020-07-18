@@ -37,6 +37,22 @@ public class User{
         return String.format("UserId: %d\nName:%s Username:%s Bio: %s\n" , getId() , getName() , getUsername() , getBio());
     }
 
+    public String profileForOtherUsers() {
+        String raw = "%s Profile: \n" +
+                "\t\t===============\n" +
+                "\t\tPosts\tFollowers\tFollowings\n" +
+                "\t\t %d \t\t   %d \t\t\t %d\n" +
+                "\t\tBio:\n" +
+                "\t\t%s";
+
+        return String.format(raw ,
+                getName() ,
+                postsSize ,
+                followersSize ,
+                followingsSize ,
+                getBio());
+    }
+
     @Override
     public String toString() {
         String raw = "%s Profile: \n" +
