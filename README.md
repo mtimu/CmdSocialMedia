@@ -18,3 +18,7 @@ You can open the project in Intellij IDEA or use the jar version of project in [
 ## Project Overview
 Overview of project and classes
 ![Project Overview](https://github.com/MohammadNik/CmdSocialMedia/blob/master/ProjectOverview.svg)
+
+
+## Be Cautious
+Project still need debugging, modification and refactoring. There are some todos still need to be done. in case you don't know, be aware of them. :)
