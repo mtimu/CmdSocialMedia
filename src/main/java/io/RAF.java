@@ -26,12 +26,22 @@ public abstract class RAF<T> implements AutoCloseable {
 
     public abstract void writeDefaults();
 
-    public final int newId() throws IOException {
-        seek(0);
-        int id = readInt();
-        seek(0);
-        writeInt(id+1);
-        return id;
+    public static File getFile(String fileAddress) {
+        File file = new File(getProjectAddress() + BASE_ADDRESS + fileAddress);
+
+        if (file.exists())
+            return file;
+
+        try {
+            System.out.println("Create " + fileAddress + " in resources folder");
+            boolean fileCreated = file.createNewFile();
+            if (!fileCreated) throw new IOException("Failed to create file with address: " + fileAddress);
+        } catch (IOException e) {
+            System.err.println("Failed to create file with address: " + fileAddress);
+            e.printStackTrace();
+        }
+
+        return file;
     }
 
     //region Read Write Methods
@@ -90,27 +100,17 @@ public abstract class RAF<T> implements AutoCloseable {
     }
 
     //region Static methods
-    public static File getFile(String address) {
-        return new File(getDynamicAddress(address));
+
+    private static String getProjectAddress() {
+        return new File("").getAbsolutePath();
     }
 
-
-    // TODO: 7/14/2020 this looks like shit! clean it up!
-    public static String getDynamicAddress(String fileAddress) {
-        String projectAddress = new File("").getAbsolutePath();
-
-        File file = new File(projectAddress + BASE_ADDRESS + fileAddress);
-        if (!file.exists()) {
-            try {
-                System.out.println("Create " + fileAddress + " in resources folder");
-                boolean fileCreated = file.createNewFile();
-                if (!fileCreated) throw new IOException("Failed to create file with address: " + fileAddress);
-            } catch (IOException e) {
-                System.err.println("Failed to create file with address: " + fileAddress);
-                e.printStackTrace();
-            }
-        }
-        return file.getPath();
+    public final int newId() throws IOException {
+        seek(0);
+        int id = readInt();
+        seek(0);
+        writeInt(id + 1);
+        return id;
     }
     //endregion
 
